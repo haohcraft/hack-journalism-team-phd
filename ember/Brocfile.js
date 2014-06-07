@@ -1,6 +1,8 @@
 /* global require, module */
 
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var EmberApp   = require('ember-cli/lib/broccoli/ember-app'),
+    pickFiles  = require('broccoli-static-compiler'),
+    mergeTrees = require('broccoli-merge-trees');
 
 var app = new EmberApp({
   name: require('./package.json').name,
@@ -30,5 +32,11 @@ app.import('vendor/ic-ajax/dist/named-amd/main.js', {
   ]
 });
 
+var bootstrapFonts = pickFiles('vendor/bootstrap-sass-official/vendor/assets/fonts/bootstrap', {
+    srcDir: '/',
+    destDir: '/assets/bootstrap'
+});
 
-module.exports = app.toTree();
+// Merge the bootstrapFonts with the ember app tree
+module.exports = mergeTrees([app.toTree(),bootstrapFonts]);
+
