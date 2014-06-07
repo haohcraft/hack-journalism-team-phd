@@ -1,0 +1,20 @@
+<div class='row'>
+  <div class='col-xs-12 col-md-8'>
+  </div>
+
+  <div class='col-xs-12 col-md-4'>
+    <div class="input-group">
+      {{input
+        type='text'
+        class='form-control'
+        placeholder='Submit a new article'
+        value=newArticleUrl}}
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+          {{action 'submitNewArticle'}}>
+          Go!
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
